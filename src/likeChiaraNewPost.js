@@ -31,7 +31,6 @@ async function likeChiaraNewPost(ig) {
 
   let posts = await getUserRecentPosts(ig, username);
 
-
   if (posts != undefined || posts != null) {
 
     console.log("Latest posts size: " + posts.length);
@@ -41,10 +40,10 @@ async function likeChiaraNewPost(ig) {
     let dateString = moment.unix(latestPost.caption.created_at_utc).format("MM/DD/YYYY HH:mm:ss");
 
     let latestPostInfo = {
-      short_name: latestPost.location.short_name,
-      name: latestPost.location.name,
-      caption: latestPost.caption.text,
-      created_at_utc: dateString,
+     // short_name: latestPost.location.short_name ? 'nothing' : latestPost.location.short_name ,
+     // name: latestPost.location.name  ? 'nothing' : latestPost.location.name ,
+      caption: latestPost.caption.text  ? 'nothing' : latestPost.caption.text ,
+      created_at_utc: dateString  ,
     }
 
     if (latestPostTime.diff(previousPostTime) > 0 || previousPostTime == undefined) {
