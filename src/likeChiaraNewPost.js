@@ -1,11 +1,19 @@
 const { post } = require("request");
-
+const http = require('http');
 require("tools-for-instagram");
 const moment = require('moment');
 
 let secondsBetweenChecks = 60;
 let previousPostTime;
 let username = 'chiaraferragni';
+
+let app = http.createServer((req, res) => {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello World!\n');
+});
+
+app.listen(3000, '127.0.0.1');
+console.log('Node server running on port 3000');
 
 (async () => {
 
