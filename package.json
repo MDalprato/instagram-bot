@@ -1,0 +1,24 @@
+{
+  "name": "instagram-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MDalprato/instagram-bot.git"
+  },
+  "author": "marco dalprato",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MDalprato/instagram-bot/issues"
+  },
+  "homepage": "https://github.com/MDalprato/instagram-bot#readme",
+  "dependencies": {
+    "moment": "^2.29.1",
+    "tools-for-instagram": "^1.8.12"
+  }
+}
