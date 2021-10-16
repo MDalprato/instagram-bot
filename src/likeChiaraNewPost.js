@@ -2,7 +2,7 @@ const { post } = require("request");
 require("tools-for-instagram");
 const moment = require('moment');
 
-let secondsBetweenChecks = 60;
+let secondsBetweenChecks = 3600;
 let previousPostTime;
 let username = 'chiaraferragni';
 
