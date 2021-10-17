@@ -1,1 +1,1 @@
-worker: node src/likeChiaraNewPost.js
+worker: node src/index.js

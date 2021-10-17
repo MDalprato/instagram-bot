@@ -1,32 +1,14 @@
-const { post } = require("request");
-require("tools-for-instagram");
 const moment = require('moment');
 
-let secondsBetweenChecks = 3600;
 let previousPostTime;
-let username = 'chiaraferragni';
 
-console.log('Node server running on port ' + process.env.PORT );
+async function likeUserLatestPost(ig, username) {
 
-(async () => {
-
-  console.log("\n -- Check and like " + username + " post --\n".bold.underline);
-  let ig = await login();
-
-  await likeChiaraNewPost(ig);
-  setInterval(await likeChiaraNewPost.bind(null, ig), 1000 * secondsBetweenChecks);
-
-})();
-
-async function likeChiaraNewPost(ig) {
-
-  console.log("likeChiaraNewPost ...");
+  console.log("\n -- Check for latest post, user:" + username + "-- \n".bold.underline);
 
   let posts = await getUserRecentPosts(ig, username);
 
   if (posts != undefined || posts != null) {
-
-    console.log("Latest posts size: " + posts.length);
 
     let latestPost = posts[0];
     let latestPostTime = moment(latestPost.caption.created_at_utc);
@@ -34,8 +16,9 @@ async function likeChiaraNewPost(ig) {
 
     let latestPostInfo = {
       caption: latestPost.caption.text,
-      created_at_utc: dateString  ,
+      created_at_utc: dateString,
     }
+
     if (latestPostTime.diff(previousPostTime) > 0 || previousPostTime == undefined) {
       await commentPost(ig, latestPost, "Wow 🔥");
       likePost(ig, latestPost);
@@ -47,7 +30,10 @@ async function likeChiaraNewPost(ig) {
     }
     previousPostTime = latestPostTime;
     console.log("Updating time");
+
   }
-  console.log("Finished checking posts, waiting " + secondsBetweenChecks + " seconds");
+  console.log("\n -- Finished check for latest post -- \n".bold.underline);
 
 }
+
+module.exports.likeUserLatestPost = likeUserLatestPost;
