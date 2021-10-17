@@ -1,5 +1,6 @@
 const moment = require('moment');
 const { getRandomComment } = require("../utils/randomizeComments");
+const {sendTelegramMessage} = require("../telegram/sendTelegramMessage");
 
 let previousPostTime;
 
@@ -20,16 +21,22 @@ async function likeUserLatestPost(ig, username) {
       created_at_utc: dateString,
     }
 
-    if (latestPostTime.diff(previousPostTime) > 0 || previousPostTime == undefined) {
 
+    if (latestPostTime.diff(previousPostTime) > 0 || previousPostTime == undefined) {
 
       await commentPost(ig, latestPost, getRandomComment());
       likePost(ig, latestPost);
       console.log("latestPostInfo:");
       console.log(latestPostInfo);
       console.log("Like + comment with ' " + getRandomComment() +  "getRandomComment()  ' latest post");
+
+       sendTelegramMessage("User ' + username + ' created a new post. I'm going to like it. New post is  + " + latestPostInfo.caption);
+
+      
     } else {
       console.log("Nothing new from the user, skip");
+       sendTelegramMessage("User ' + username + ' did not posted anything new yet");
+
     }
     previousPostTime = latestPostTime;
     console.log("Updating time");

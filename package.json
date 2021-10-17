@@ -23,6 +23,7 @@
   "homepage": "https://github.com/MDalprato/instagram-bot#readme",
   "dependencies": {
     "moment": "^2.29.1",
+    "node-telegram-bot-api": "^0.54.0",
     "tools-for-instagram": "^1.8.12"
   }
 }
