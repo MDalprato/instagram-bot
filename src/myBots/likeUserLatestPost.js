@@ -1,4 +1,5 @@
 const moment = require('moment');
+const { getRandomComment } = require("../utils/randomizeComments");
 
 let previousPostTime;
 
@@ -20,11 +21,13 @@ async function likeUserLatestPost(ig, username) {
     }
 
     if (latestPostTime.diff(previousPostTime) > 0 || previousPostTime == undefined) {
-      await commentPost(ig, latestPost, "Wow 🔥");
+
+
+      await commentPost(ig, latestPost, getRandomComment());
       likePost(ig, latestPost);
       console.log("latestPostInfo:");
       console.log(latestPostInfo);
-      console.log("Like + comment latest post");
+      console.log("Like + comment with ' " + getRandomComment() +  "getRandomComment()  ' latest post");
     } else {
       console.log("Nothing new from the user, skip");
     }
