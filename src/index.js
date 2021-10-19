@@ -2,7 +2,7 @@ require("tools-for-instagram");
 const { likeUserLatestPost } = require("./myBots/likeUserLatestPost");
 const {sendTelegramMessage} = require("./telegram/sendTelegramMessage");
 
-const secondsBetweenChecks = 60;
+const secondsBetweenChecks = 10;
 
 (async () => {
   let ig = await login();
