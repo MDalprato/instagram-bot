@@ -30,7 +30,7 @@ async function likeUserLatestPost(ig, username) {
       console.log(latestPostInfo);
       console.log("Like + comment with ' " + getRandomComment() +  "getRandomComment()  ' latest post");
 
-       sendTelegramMessage("User " + username + " created a new post. I'm going to like it. New post is  + " + latestPostInfo.caption);
+       sendTelegramMessage("User " + username + " created a new post. I'm going to like and commet it. New post is '" + latestPostInfo.caption + "'");
 
       
     } else {
