@@ -1,12 +1,15 @@
 const moment = require('moment');
 const { getRandomComment } = require("../utils/randomizeComments");
-const {sendTelegramMessage} = require("../telegram/sendTelegramMessage");
+const { sendTelegramMessage } = require("../telegram/sendTelegramMessage");
+
+const log = require('simple-node-logger').createSimpleLogger('info.log');
+
 
 let previousPostTime;
 
 async function likeUserLatestPost(ig, username) {
 
-  console.log("\n -- Check for latest post, user:" + username + "-- \n".bold.underline);
+  log.info("\n -- Check for latest post, user: **** " + username + " *****");
 
   let posts = await getUserRecentPosts(ig, username);
 
@@ -26,23 +29,29 @@ async function likeUserLatestPost(ig, username) {
 
       await commentPost(ig, latestPost, getRandomComment());
       likePost(ig, latestPost);
-      console.log("latestPostInfo:");
-      console.log(latestPostInfo);
-      console.log("Like + comment with ' " + getRandomComment() +  "getRandomComment()  ' latest post");
 
-       sendTelegramMessage("User " + username + " created a new post. I'm going to like and commet it. New post is '" + latestPostInfo.caption + "'");
+      const info = "User " + username + " created a new post. I'm going to like and commet it. New post is '" + latestPostInfo.caption + "'";
 
-      
+      console.log(info);
+      log.info(info);
+      sendTelegramMessage(info);
+
+
     } else {
-      console.log("Nothing new from the user, skip");
-       sendTelegramMessage("User " + username + " did not posted anything new yet");
+
+      const info = "No updates from user " + username;
+      console.log(info);
+      log.info(info);
 
     }
+
     previousPostTime = latestPostTime;
-    console.log("Updating time");
 
   }
-  console.log("\n -- Finished check for latest post -- \n".bold.underline);
+
+  const info = "\n -- Finished check for latest post -- ";
+  console.log(info);
+  log.info(info);
 
 }
 
