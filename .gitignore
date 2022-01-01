@@ -76,6 +76,5 @@ typings/
 .fusebox/
 
 # instagram files
-# cookies/*
-# db/*
+cookies/*
 
